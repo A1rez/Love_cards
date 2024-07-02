@@ -2,6 +2,8 @@ import tkinter as tk
 from tkinter import filedialog, messagebox
 from PIL import Image, ImageDraw, ImageFont, ImageTk
 import random
+import os
+import glob
 
 # Lista de mensagens
 mensagens = [
