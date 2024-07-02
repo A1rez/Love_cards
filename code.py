@@ -25,16 +25,22 @@ mensagens = [
     "Sou completamente apaixonado por você",
 ]
 
-# Caminho fixo para a imagem de fundo e a fonte
-bg_image_path = "C:\\Users\\jeyso\\OneDrive\\Desktop\\coracoes-vermelhos-romantico-branco-fundo-vetor-dia-dos-namorados-copia-espaco-cartao-de-felicitacoes_55997-2110.jpg"
+# Caminho fixo para a fonte
 font_path = "C:\\Users\\jeyso\\OneDrive\\Desktop\\Stylissa.ttf"
 
+def get_random_image_path(folder):
+    # Usa glob para encontrar todos os arquivos de imagem na pasta
+    image_paths = glob.glob(os.path.join(folder, "*.png")) + glob.glob(os.path.join(folder, "*.jpg")) + glob.glob(os.path.join(folder, "*.jpeg"))
+    if not image_paths:
+        raise FileNotFoundError("Nenhuma imagem encontrada na pasta especificada.")
+    return random.choice(image_paths)
 
 def create_card():
     # Seleciona uma mensagem aleatória
     message = random.choice(mensagens)
 
     # Abre a imagem de fundo
+    bg_image_path = get_random_image_path(bg_image_folder)
     bg_image = Image.open(bg_image_path)
 
     # Define a fonte e o tamanho
