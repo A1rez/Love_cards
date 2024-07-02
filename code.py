@@ -18,13 +18,16 @@ mensagens = [
     "Meu amor por você cresce a cada dia.",
     "Você é a razão da minha felicidade.",
     "Meu amor por você é infinito.",
-    "Você é meu melhor amigo e meu grande amor.",
-    "Com você, tudo é mais bonito."
+    "Você é minha melhor amiga e meu grande amor.",
+    "Com você, tudo é mais bonito.",
+    "Te amo\nTe amo\nTe amo",
+    "Sou louco por você",
+    "Sou completamente apaixonado por você",
 ]
 
 # Caminho fixo para a imagem de fundo e a fonte
-bg_image_path = "backgorund_image_path"
-font_path = "font_path"
+bg_image_path = "C:\\Users\\jeyso\\OneDrive\\Desktop\\coracoes-vermelhos-romantico-branco-fundo-vetor-dia-dos-namorados-copia-espaco-cartao-de-felicitacoes_55997-2110.jpg"
+font_path = "C:\\Users\\jeyso\\OneDrive\\Desktop\\Stylissa.ttf"
 
 
 def create_card():
@@ -83,9 +86,31 @@ def display_image(image):
     img_label.image = img_tk
     img_label.pack()
 
-    # Botão para salvar a imagem
-    save_button = tk.Button(img_window, text="Salvar Imagem", command=lambda: save_image(image))
-    save_button.pack(pady=100)
+    # Função para salvar a imagem
+    def save_image():
+        save_path = filedialog.asksaveasfilename(defaultextension=".png",
+                                                 filetypes=[("PNG files", "*.png"), ("All files", "*.*")])
+        if save_path:
+            image.save(save_path)
+            messagebox.showinfo("Salvo", "Cartão de amor salvo com sucesso!")
+        else:
+            messagebox.showwarning("Cancelado", "Operação cancelada!")
+        img_window.destroy()
+
+    # Função para fechar a janela sem salvar
+    def close_window():
+        img_window.destroy()
+
+    # Botões para decidir se deseja salvar a imagem
+    button_frame = tk.Frame(img_label)
+    button_frame.pack(pady=350, padx=350)
+    button_frame.place(x=10, y=10)
+
+    yes_button = tk.Button(button_frame, text="Salvar", command=save_image)
+    yes_button.pack(side=tk.LEFT, padx=5)
+
+    no_button = tk.Button(button_frame, text="Não Salvar", command=close_window)
+    no_button.pack(side=tk.LEFT, padx=5)
 
 
 def save_image(image):
@@ -102,6 +127,9 @@ def save_image(image):
 root = tk.Tk()
 root.title("Gerador de Cartões de Amor")
 
-tk.Button(root, text="Criar Cartão", command=create_card).pack(pady=20)
+a=tk.Button(root, text="Criar Cartão", command=create_card).pack(pady=20)
+
+
+
 
 root.mainloop()
