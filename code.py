@@ -22,17 +22,20 @@ mensagens = [
     "Meu amor por você é infinito.",
     "Você é minha melhor amiga e meu grande amor.",
     "Com você, tudo é mais bonito.",
-    "Te amo\nTe amo\nTe amo",
+    "Te amo",
     "Sou louco por você",
     "Sou completamente apaixonado por você",
 ]
 
+# folder path
+image_folder = "C:\\Users\\jeyso\\OneDrive\\Desktop\\backgrounds"
+
 # Caminho fixo para a fonte
 font_path = "C:\\Users\\jeyso\\OneDrive\\Desktop\\Stylissa.ttf"
 
-def get_random_image_path(folder):
+def get_random_image_path(image_folder):
     # Usa glob para encontrar todos os arquivos de imagem na pasta
-    image_paths = glob.glob(os.path.join(folder, "*.png")) + glob.glob(os.path.join(folder, "*.jpg")) + glob.glob(os.path.join(folder, "*.jpeg"))
+    image_paths = glob.glob(os.path.join(image_folder, "*.png")) + glob.glob(os.path.join(image_folder, "*.jpg")) + glob.glob(os.path.join(image_folder, "*.jpeg"))
     if not image_paths:
         raise FileNotFoundError("Nenhuma imagem encontrada na pasta especificada.")
     return random.choice(image_paths)
@@ -42,7 +45,7 @@ def create_card():
     message = random.choice(mensagens)
 
     # Abre a imagem de fundo
-    bg_image_path = get_random_image_path(bg_image_folder)
+    bg_image_path = get_random_image_path(image_folder)
     bg_image = Image.open(bg_image_path)
 
     # Define a fonte e o tamanho
@@ -74,7 +77,7 @@ def create_card():
     for line in lines:
         text_width = draw.textlength(line, font=font)
         x_offset = (bg_image.size[0] - text_width) // 2  # Centraliza horizontalmente
-        draw.text((x_offset, y_offset), line, font=font, fill="red")
+        draw.text((x_offset, y_offset), line, font=font, fill="black")
         y_offset += draw.textbbox((0, 0), line, font=font)[3]
 
     # Exibe a imagem na tela antes de salvar
