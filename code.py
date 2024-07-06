@@ -28,10 +28,10 @@ mensagens = [
 ]
 
 # folder path
-image_folder = "C:\\Users\\jeyso\\OneDrive\\Desktop\\backgrounds"
+image_folder = "your_backgorund_folder_path"
 
 # Caminho fixo para a fonte
-font_path = "C:\\Users\\jeyso\\OneDrive\\Desktop\\Stylissa.ttf"
+font_path = "your_font_path"
 
 def get_random_image_path(image_folder):
     # Usa glob para encontrar todos os arquivos de imagem na pasta
